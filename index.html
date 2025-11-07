@@ -3,59 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hatha Yoga</title>
+  <title>Конструктор асан — Yoga Sequence Builder</title>
   <style>
     body {
       font-family: sans-serif;
       margin: 0;
       background: #faf6f0;
       color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     header {
       background: #7ba05b;
       color: white;
       padding: 15px;
       text-align: center;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
+      font-size: 20px;
     }
     main {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
       padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
     }
-    footer {
+    .panel {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      width: 45%;
+      min-width: 300px;
+    }
+    h2 {
       text-align: center;
-      padding: 10px;
+      color: #7ba05b;
+    }
+    button {
       background: #7ba05b;
       color: white;
-      margin-top: 40px;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #67904c;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Hatha Yoga</h1>
-    <nav>
-      <a href="#">Главная</a>
-      <a href="#">О проекте</a>
-      <a href="#">Конструктор асан</a>
-      <a href="#">Контакты</a>
-    </nav>
+    🧘‍♀️ Конструктор последовательностей асан
   </header>
 
   <main>
-    <h2>Добро пожаловать в конструктор последовательностей асан</h2>
-    <p>Здесь вы сможете создавать собственные последовательности Хатха-йоги из любимых асан.</p>
-    <button onclick="alert('Позже здесь будет конструктор!')">Начать</button>
+    <div class="panel">
+      <h2>Список асан</h2>
+      <ul id="asana-list">
+        <li>Тадасана <button onclick="addAsana('Тадасана')">Добавить</button></li>
+        <li>Уткатасана <button onclick="addAsana('Уткатасана')">Добавить</button></li>
+        <li>Вирабхадрасана I <button onclick="addAsana('Вирабхадрасана I')">Добавить</button></li>
+        <li>Вирабхадрасана II <button onclick="addAsana('Вирабхадрасана II')">Добавить</button></li>
+        <li>Триконасана <button onclick="addAsana('Триконасана')">Добавить</button></li>
+        <li>Бхуджангасана <button onclick="addAsana('Бхуджангасана')">Добавить</button></li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Моя последовательность</h2>
+      <ul id="sequence-list"></ul>
+    </div>
   </main>
 
-  <footer>
+  <footer style="text-align:center;padding:10px;background:#7ba05b;color:white;">
     © 2025 Yoga Project
   </footer>
+
+  <script>
+    function addAsana(name) {
+      const list = document.getElementById("sequence-list");
+      const item = document.createElement("li");
+      item.textContent = name + " ";
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "Удалить";
+      removeBtn.onclick = () => item.remove();
+      item.appendChild(removeBtn);
+      list.appendChild(item);
+    }
+  </script>
 </body>
 </html>
